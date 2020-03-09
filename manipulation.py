@@ -54,5 +54,27 @@ def invert(image):
     return inverted_image
 
 
-print(invert(d))
+def fun_lighten(pixel, num):
+    new_pixel = tuple()
+    pixel = list(pixel)
+    for i in range(len(pixel)):
+        pixel[i] = pixel[i] + int(num * (255 - pixel[i]))
+        new_pixel += (pixel[i]),
+    return new_pixel
 
+
+def lighten(image, num):
+    return [[fun_lighten(pixel, num) for pixel in row] for row in image]
+
+
+def fun_darken(pixel, num):
+    new_pixel = tuple()
+    pixel = list(pixel)
+    for i in range(len(pixel)):
+        pixel[i] = pixel[i] - int(num * (pixel[i] - 0))
+        new_pixel += (pixel[i]),
+    return new_pixel
+
+
+def darken(image, num):
+    return [[fun_darken(pixel, num) for pixel in row] for row in image]
