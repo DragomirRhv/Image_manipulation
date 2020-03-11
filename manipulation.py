@@ -72,3 +72,27 @@ def fun_darken(pixel, num):
 
 def darken(image, num):
     return [[fun_darken(pixel, num) for pixel in row] for row in image]
+
+
+def create_histogram(image):
+    histogram = {'red': {}, 'green': {}, 'blue': {}}
+    for row in image:
+        for color in row:
+            red = color[0]
+            green = color[1]
+            blue = color[2]
+            if red not in histogram['red']:
+                histogram['red'][red] = 1
+            else:
+                histogram['red'][red] += 1
+            if green not in histogram['green']:
+                histogram['green'][green] = 1
+            else:
+                histogram['green'][green] += 1
+            if blue not in histogram['blue']:
+                histogram['blue'][blue] = 1
+            else:
+                histogram['blue'][blue] += 1
+    return histogram
+
+print(create_histogram(d))
